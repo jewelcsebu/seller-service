@@ -5,6 +5,7 @@ import com.jewelcse045.sellerservice.repository.SellerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -32,6 +33,22 @@ public class SellerServiceImp implements SellerService{
        }
 
        return false;
+    }
+
+    @Override
+    public List<Seller> getSellers() {
+        return sellerRepository.findAll();
+    }
+
+    @Override
+    public Optional<Seller> getSellerById(int id) {
+        Optional<Seller> seller = sellerRepository.findById(id);
+        return seller;
+    }
+
+    @Override
+    public void removeSeller(Seller seller) {
+        sellerRepository.delete(seller);
     }
 
 

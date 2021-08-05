@@ -2,12 +2,20 @@ package com.jewelcse045.sellerservice.service;
 
 
 import com.jewelcse045.sellerservice.model.Seller;
-import org.springframework.stereotype.Service;
+
+import java.awt.*;
+import java.util.List;
+import java.util.Optional;
+
 
 public interface SellerService {
 
-    public Seller saveOrUpdateSeller(Seller seller);
-
-
+    Seller saveOrUpdateSeller(Seller seller);
     boolean  getSellerByEmail(String email);
+
+    List<Seller> getSellers();
+
+    Optional<Seller> getSellerById(int id);
+
+    void removeSeller(Seller seller);
 }

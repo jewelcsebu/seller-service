@@ -1,38 +1,33 @@
 package com.jewelcse045.sellerservice.util;
 
-public class JsonResponseModel {
 
-	private String success;
-	
-	private String message;
-	
-	private String status_code;
-	
+public class JsonResponseEntityModel {
 
-	public String getSuccess() {
+	private boolean success;
+	private Object data;
+	private String statusCode;
+
+	public boolean isSuccess() {
 		return success;
 	}
 
-	public void setSuccess(String success) {
+	public void setSuccess(boolean success) {
 		this.success = success;
 	}
 
-	public String getMessage() {
-		return message;
+	public Object getData() {
+		return data;
 	}
 
-	public void setMessage(String message) {
-		this.message = message;
+	public void setData(Object data) {
+		this.data = data;
 	}
 
-	public String getStatus_code() {
-		return status_code;
+	public String getStatusCode() {
+		return statusCode;
 	}
 
-	public void setStatus_code(String status_code) {
-		this.status_code = status_code;
+	public void setStatusCode(String statusCode) {
+		this.statusCode = statusCode;
 	}
-
-
-
 }
