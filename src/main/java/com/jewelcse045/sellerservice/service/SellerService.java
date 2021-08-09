@@ -1,6 +1,7 @@
 package com.jewelcse045.sellerservice.service;
 
 
+import com.jewelcse045.sellerservice.model.Product;
 import com.jewelcse045.sellerservice.model.Seller;
 
 import java.awt.*;
@@ -18,4 +19,6 @@ public interface SellerService {
     Optional<Seller> getSellerById(int id);
 
     void removeSeller(Seller seller);
+
+    List<Product> getProductsBySellerId(int sellerId);
 }

@@ -8,6 +8,7 @@ import com.jewelcse045.sellerservice.service.SellerServiceImp;
 import com.jewelcse045.sellerservice.util.JsonResponseEntityModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +30,7 @@ public class SellerController {
         return "running";
     }
 
-    @PostMapping("/create/seller")
+    @PostMapping(path = "/create/seller", produces = { MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<Seller> saveSeller(@RequestBody Seller seller) throws RuntimeException{
 
         if (seller.getSellerFirstName() == null || seller.getSellerFirstName().isEmpty()){
@@ -61,7 +62,7 @@ public class SellerController {
     }
 
 
-    @GetMapping("/get/sellers")
+    @GetMapping(path = "/get/sellers", produces = { MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<JsonResponseEntityModel> getSellers(){
 
         responseModel.setSuccess(true);
@@ -71,7 +72,7 @@ public class SellerController {
         return new ResponseEntity<>(responseModel,HttpStatus.OK);
     }
 
-    @GetMapping("/get/seller/{id}")
+    @GetMapping(path = "/get/seller/{id}", produces = { MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<JsonResponseEntityModel> getSeller(@PathVariable int id){
 
         Seller seller = sellerServiceImp.getSellerById(id).orElseThrow(()->new SellerNotFoundException("Seller Not Found for Id: "+id));
@@ -85,7 +86,7 @@ public class SellerController {
 
 
 
-    @PutMapping("/update/seller/{id}")
+    @PutMapping(path = "/update/seller/{id}", produces = { MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<JsonResponseEntityModel> updateSeller(@RequestBody Seller seller,@PathVariable int id){
         if (id<=0){
             throw new ApplicationException("Invalid Seller Id"+id);
@@ -100,7 +101,7 @@ public class SellerController {
         return new ResponseEntity<>(responseModel,HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/seller/{id}")
+    @DeleteMapping(path = "/delete/seller/{id}", produces = { MediaType.APPLICATION_JSON_VALUE })
     public JsonResponseEntityModel removeSeller(@PathVariable int id){
         if (id<=0){
             throw new ApplicationException("Invalid Seller Id "+id);
@@ -120,5 +121,23 @@ public class SellerController {
             responseModel.setStatusCode("403");
         }
         return responseModel;
+    }
+
+    @GetMapping(path = "/get/seller/{sellerId}/products", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public ResponseEntity<JsonResponseEntityModel> getSellerProducts(@PathVariable int sellerId){
+
+        if (sellerId<=0){
+            throw new ApplicationException("Invalid Seller Id");
+        }
+
+        Seller doesSellerExit = sellerServiceImp.getSellerById(sellerId)
+                .orElseThrow( () ->new SellerNotFoundException("Seller Not found for id "+sellerId));
+
+
+        responseModel.setSuccess(true);
+        responseModel.setData(sellerServiceImp.getProductsBySellerId(sellerId));
+        responseModel.setStatusCode("200");
+
+        return new ResponseEntity<>(responseModel,HttpStatus.OK);
     }
 }

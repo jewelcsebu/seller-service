@@ -1,5 +1,6 @@
 package com.jewelcse045.sellerservice.util;
 
+
 import lombok.*;
 
 @AllArgsConstructor
@@ -7,8 +8,7 @@ import lombok.*;
 @Getter
 @Setter
 @Data
-public class JsonResponseEntityModel extends JsonResponse{
-
-	private Object data;
-
+public class JsonResponse {
+    private boolean success;
+    private String StatusCode;
 }
