@@ -32,7 +32,7 @@ public class SellerServiceImp implements SellerService{
     public boolean getSellerByEmail(String email) {
        Optional<Seller> seller = sellerRepository.findByEmail(email);
 
-       if (!seller.isEmpty()){
+       if (seller ==null){
            return true;
        }
 

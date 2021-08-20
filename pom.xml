@@ -14,7 +14,7 @@
 	<name>seller-service</name>
 	<description>Seller-Service Spring Boot Application</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>8</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
