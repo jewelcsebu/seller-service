@@ -10,7 +10,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity(name = "sellers")
+@Entity
+@Table(name = "sellers")
 public class Seller {
 
     @Id
@@ -22,6 +23,7 @@ public class Seller {
     private String email;
     private String contactNumber;
     private String address[];
+
 
 
 }
