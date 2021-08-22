@@ -7,8 +7,9 @@ import lombok.*;
 @Getter
 @Setter
 @Data
-public class JsonResponseEntityModel extends JsonResponse{
+public class JsonResponseEntityModel<T> extends JsonResponse{
 
-	private Object data;
+	private T data;
+	private int dataSize;
 
 }

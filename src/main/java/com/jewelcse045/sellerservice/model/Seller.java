@@ -22,7 +22,7 @@ public class Seller {
     private String sellerLastName;
     private String email;
     private String contactNumber;
-    private String address[];
+    private String address;
 
 
 
