@@ -1,30 +1,20 @@
 package com.jewelcse045.sellerservice.service;
 
-import com.jewelcse045.sellerservice.model.Product;
 import com.jewelcse045.sellerservice.model.Seller;
-import com.jewelcse045.sellerservice.repository.ProductRepository;
 import com.jewelcse045.sellerservice.repository.SellerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 
 @Service
 public class SellerServiceImp implements SellerService{
 
     private SellerRepository sellerRepository;
-    private ProductRepository productRepository;
 
 //    @PostConstruct
 //    public void initDB() {
@@ -35,9 +25,8 @@ public class SellerServiceImp implements SellerService{
 //    }
 
 
-    public SellerServiceImp(SellerRepository sellerRepository,ProductRepository productRepository){
+    public SellerServiceImp(SellerRepository sellerRepository){
         this.sellerRepository = sellerRepository;
-        this.productRepository = productRepository;
     }
 
     @Override
@@ -86,10 +75,6 @@ public class SellerServiceImp implements SellerService{
         sellerRepository.delete(seller);
     }
 
-    @Override
-    public List<Product> getProductsBySellerId(int sellerId) {
-        return productRepository.findAllBySellerId(sellerId);
-    }
 
 
 }

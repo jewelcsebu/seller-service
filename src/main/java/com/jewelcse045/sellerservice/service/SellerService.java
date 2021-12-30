@@ -1,11 +1,9 @@
 package com.jewelcse045.sellerservice.service;
 
 
-import com.jewelcse045.sellerservice.model.Product;
 import com.jewelcse045.sellerservice.model.Seller;
 import org.springframework.data.domain.Page;
 
-import java.awt.*;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +18,5 @@ public interface SellerService {
     boolean  getSellerByEmail(String email);
     Optional<Seller> getSellerById(int id);
     void removeSeller(Seller seller);
-    List<Product> getProductsBySellerId(int sellerId);
 
 }

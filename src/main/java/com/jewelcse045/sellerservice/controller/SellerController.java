@@ -169,21 +169,23 @@ public class SellerController {
         return responseModel;
     }
 
-    @GetMapping(path = "/get/seller/{sellerId}/products", produces = { MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<JsonResponseEntityModel> getSellerProducts(@PathVariable int sellerId){
+//    @GetMapping(path = "/get/seller/{sellerId}/products", produces = { MediaType.APPLICATION_JSON_VALUE })
+//    public ResponseEntity<JsonResponseEntityModel> getSellerProducts(@PathVariable int sellerId){
+//
+//        if (sellerId<=0){
+//            throw new ApplicationException("Invalid Seller Id");
+//        }
+//
+//        Seller doesSellerExit = sellerService.getSellerById(sellerId)
+//                .orElseThrow( () ->new SellerNotFoundException("Seller Not found for id "+sellerId));
+//
+//
+//        responseModel.setSuccess(true);
+//        responseModel.setData(sellerService.getProductsBySellerId(sellerId));
+//        responseModel.setStatusCode("200");
+//
+//        return new ResponseEntity<>(responseModel,HttpStatus.OK);
+//    }
 
-        if (sellerId<=0){
-            throw new ApplicationException("Invalid Seller Id");
-        }
-
-        Seller doesSellerExit = sellerService.getSellerById(sellerId)
-                .orElseThrow( () ->new SellerNotFoundException("Seller Not found for id "+sellerId));
-
-
-        responseModel.setSuccess(true);
-        responseModel.setData(sellerService.getProductsBySellerId(sellerId));
-        responseModel.setStatusCode("200");
-
-        return new ResponseEntity<>(responseModel,HttpStatus.OK);
-    }
+    
 }
