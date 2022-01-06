@@ -3,9 +3,9 @@ package com.jewelcse045.sellerservice.util;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 
 import java.sql.Date;
+import java.util.Random;
 
 
 public class MethodUtils {
@@ -14,12 +14,22 @@ public class MethodUtils {
 	private MethodUtils() {
 	}
 
+	public static String generateVoucherCode(){
+		int size=6;
+		String chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+		Random rnd = new Random();
+		StringBuilder sb = new StringBuilder(size);
+		for (int i = 0; i < size; i++)
+			sb.append(chars.charAt(rnd.nextInt(chars.length())));
+		return sb.toString();
+	}
+
 		public static String prepareErrorJSON(HttpStatus status, Exception ex) {
 	    	JSONObject errorJSON=new JSONObject();
 	    	try {
-				errorJSON.put("success",false);
+				errorJSON.put("success","False");
 				errorJSON.put("message",ex.getMessage());
-		    	errorJSON.put("statusCode",status.value());
+		    	errorJSON.put("status_code",status.value());
 			} catch (JSONException e) {
 				
 				e.printStackTrace();
@@ -32,7 +42,7 @@ public class MethodUtils {
 			JSONObject errorJSON=new JSONObject();
 	    	System.out.println("MethodUtils");
 	    	try {
-				errorJSON.put("success",false);
+				errorJSON.put("success","False");
 				errorJSON.put("message","Invalid input");
 		    	errorJSON.put("status_code",status.value());
 			} catch (JSONException e) {
@@ -48,7 +58,5 @@ public class MethodUtils {
 		Date date=new Date(millis);
 		return date;
 	}
-
-
 
 }

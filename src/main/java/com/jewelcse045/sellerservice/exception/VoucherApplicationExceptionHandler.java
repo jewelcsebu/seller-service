@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
-public class SellerApplicationExceptionHandler {
+public class VoucherApplicationExceptionHandler {
 
     @ExceptionHandler(value=ApplicationException.class)
     public ResponseEntity<String> applicationException(ApplicationException exception){
@@ -16,10 +16,10 @@ public class SellerApplicationExceptionHandler {
         return new ResponseEntity<>(MethodUtils.prepareErrorJSON(status,exception),status);
     }
 
-    @ExceptionHandler(value=SellerNotFoundException.class)
-    public ResponseEntity<String> productNotFoundExceptionException(SellerNotFoundException exception){
-        HttpStatus status=HttpStatus.NOT_FOUND;
-        return new ResponseEntity<>(MethodUtils.prepareErrorJSON(status,exception),status);
-    }
+//    @ExceptionHandler(value=SellerNotFoundException.class)
+//    public ResponseEntity<String> productNotFoundExceptionException(SellerNotFoundException exception){
+//        HttpStatus status=HttpStatus.NOT_FOUND;
+//        return new ResponseEntity<>(MethodUtils.prepareErrorJSON(status,exception),status);
+//    }
 
 }
